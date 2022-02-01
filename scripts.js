@@ -2,16 +2,19 @@
 // Remember to pay attention to page loading!
 
 
-window.addEventListener("load", function(){
+window.addEventListener("load", init);
 
-    console.log("window loaded");
 
+function init(){
     let takeOffButton = document.getElementById("takeoff");
     takeOffButton.addEventListener("click", function(){
         if (confirm("Confirm that the shuttle is ready for takeoff.") == true){
             document.getElementById("flightStatus").innerHTML = "Shuttle in flight.";
             document.getElementById("shuttleBackground").style.backgroundColor = "blue"
-            document.getElementById("spaceShuttleHeight").innerHTML += 10000;
+            let spaceShuttleHeight = document.getElementById("spaceShuttleHeight").innerHTML
+            spaceShuttleHeight = Number(spaceShuttleHeight);
+            spaceShuttleHeight += 10000;
+            document.getElementById("spaceShuttleHeight").innerHTML = spaceShuttleHeight;
         }
     });
 
@@ -23,20 +26,27 @@ window.addEventListener("load", function(){
         document.getElementById("spaceShuttleHeight").innerHTML = 0;
     });
 
+  
     let upButton = document.getElementById("up");
     upButton.addEventListener("click", function(){
-        document.getElementById("rocket").style.transform = "translate(0px,-10px)";
-        document.getElementById("spaceShuttleHeight").innerHTML += 10000;
-        // console.log(Number(document.getElementById("spaceShuttleHeight").innerHTML));
-        // console.log(typeof Number(document.getElementById("spaceShuttleHeight").innerHTML));
-        // console.log(spaceShuttleHeight);
-        // console.log(Number(document.getElementById("spaceShuttleHeight").innerHTML) + 4);
+        let spaceShuttleHeight = document.getElementById("spaceShuttleHeight").innerHTML
+        spaceShuttleHeight = Number(spaceShuttleHeight);
+        spaceShuttleHeight += 10000;
+        document.getElementById("spaceShuttleHeight").innerHTML = spaceShuttleHeight;
+
+        let rocket = document.getElementById("rocket");
+        rocket.style.transform = "translate(0px,-10px)";
+        document.getElementById("rocket").innerHTML = rocket;
+ 
     });
 
     let downButton = document.getElementById("down");
     downButton.addEventListener("click", function(){
         document.getElementById("rocket").style.transform = "translate(0px,10px)";
-        document.getElementById("spaceShuttleHeight").innerHTML += 10000;
+        let spaceShuttleHeight = document.getElementById("spaceShuttleHeight").innerHTML
+        spaceShuttleHeight = Number(spaceShuttleHeight);
+        spaceShuttleHeight += -10000;
+        document.getElementById("spaceShuttleHeight").innerHTML = spaceShuttleHeight;
     });
 
     let rightButton = document.getElementById("right");
@@ -48,4 +58,4 @@ window.addEventListener("load", function(){
     leftButton.addEventListener("click", function(){
         document.getElementById("rocket").style.transform = "translate(-10px)";
     });
-});
+}
